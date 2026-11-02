@@ -1,0 +1,23 @@
+name: Bug report
+description: Report a reproducible problem, without private account data.
+body:
+  - type: markdown
+    attributes:
+      value: Do not include session tokens, raw billing responses or personal screenshots.
+  - type: input
+    id: version
+    attributes:
+      label: Saldo version and Windows version
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include expected and actual behavior. Can it be reproduced in --demo mode?
+    validations:
+      required: true
+  - type: textarea
+    id: message
+    attributes:
+      label: Sanitized error or demo screenshot

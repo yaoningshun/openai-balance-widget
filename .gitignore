@@ -1,0 +1,10 @@
+/dist/
+/bin/
+/obj/
+*.user
+*.dpapi
+*.log
+*credentials*
+*session*
+preferences.json
+.vs/

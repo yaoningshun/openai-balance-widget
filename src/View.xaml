@@ -1,0 +1,47 @@
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Background="Transparent">
+  <Grid.Resources>
+    <Style TargetType="Button">
+      <Setter Property="Cursor" Value="Hand"/><Setter Property="Foreground" Value="{DynamicResource Ink}"/><Setter Property="FontSize" Value="12"/>
+      <Setter Property="Padding" Value="12,8"/><Setter Property="Background" Value="{DynamicResource Soft}"/>
+      <Setter Property="BorderThickness" Value="0"/><Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+      <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button">
+        <Border x:Name="Chrome" CornerRadius="10" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"><ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+        <ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Chrome" Property="Opacity" Value="0.7"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter TargetName="Chrome" Property="Opacity" Value="0.4"/></Trigger></ControlTemplate.Triggers>
+      </ControlTemplate></Setter.Value></Setter>
+    </Style>
+  </Grid.Resources>
+  <Border x:Name="Pill" Height="52" Width="192" CornerRadius="26" Margin="16,12,16,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{DynamicResource Surface}" BorderBrush="{DynamicResource Line}" BorderThickness="1" Cursor="Hand" AutomationProperties.Name="Show API balance details">
+    <Border.Effect><DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.12" Color="#1F332B"/></Border.Effect>
+    <Grid x:Name="PillContent" Margin="17,0">
+      <Grid.ColumnDefinitions><ColumnDefinition Width="28"/><ColumnDefinition/><ColumnDefinition Width="12"/></Grid.ColumnDefinitions>
+      <Grid Width="20" Height="20" VerticalAlignment="Center"><Ellipse Width="17" Height="17" Stroke="{DynamicResource Accent}" StrokeThickness="1.4"/><Ellipse Width="5" Height="5" Fill="{DynamicResource Accent}"/></Grid>
+      <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock Text="OpenAI" Foreground="{DynamicResource Muted}" FontSize="9"/><TextBlock x:Name="PillAmount" Text="Connect" Foreground="{DynamicResource Ink}" FontSize="18" FontWeight="SemiBold" Margin="0,-2,0,0"/></StackPanel>
+      <Ellipse x:Name="StatusDot" Grid.Column="2" Width="5" Height="5" Fill="{DynamicResource Accent}" VerticalAlignment="Center"/>
+    </Grid>
+  </Border>
+  <Border x:Name="Orb" Height="104" Width="104" CornerRadius="52" Margin="16,12,16,0" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Collapsed" Background="{DynamicResource Surface}" BorderBrush="{DynamicResource Line}" BorderThickness="1" Cursor="Hand" AutomationProperties.Name="Show API balance details">
+    <Border.Effect><DropShadowEffect BlurRadius="16" ShadowDepth="3" Opacity="0.12"/></Border.Effect>
+    <StackPanel VerticalAlignment="Center"><TextBlock Text="OPENAI" FontSize="9" Foreground="{DynamicResource Muted}" HorizontalAlignment="Center" Margin="0,0,0,3"/><TextBlock x:Name="OrbAmount" Text="—" FontSize="22" MaxWidth="90" TextTrimming="CharacterEllipsis" FontWeight="SemiBold" Foreground="{DynamicResource Ink}" HorizontalAlignment="Center"/><Ellipse Width="5" Height="5" Fill="{DynamicResource Accent}" Margin="0,7,0,0"/></StackPanel>
+  </Border>
+  <Border x:Name="Card" Width="304" Margin="16,76,16,20" HorizontalAlignment="Right" VerticalAlignment="Top" CornerRadius="22" Visibility="Collapsed" Background="{DynamicResource Surface}" BorderThickness="1" BorderBrush="{DynamicResource Line}">
+    <Border.Effect><DropShadowEffect BlurRadius="22" ShadowDepth="5" Opacity="0.12" Color="#1F332B"/></Border.Effect>
+    <StackPanel Margin="22,19,22,19">
+      <Grid><TextBlock Text="saldo" Foreground="{DynamicResource Ink}" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+          <Button x:Name="SettingsButton" Content="···" Padding="9,0" FontSize="20" Background="Transparent" ToolTip="Connection and preferences" AutomationProperties.Name="Settings"/>
+          <Button x:Name="CloseDetailsButton" Content="×" Padding="9,0" FontSize="20" Background="Transparent" ToolTip="Close details" AutomationProperties.Name="Close balance details"/>
+        </StackPanel>
+      </Grid>
+      <TextBlock Text="Available credits" Foreground="{DynamicResource Muted}" FontSize="12" Margin="0,18,0,2"/>
+      <StackPanel Orientation="Horizontal"><TextBlock x:Name="Amount" Text="—" FontSize="42" FontWeight="SemiBold" Foreground="{DynamicResource Ink}"/><TextBlock Text="USD" FontSize="11" Foreground="{DynamicResource Muted}" Margin="8,0,0,10" VerticalAlignment="Bottom"/></StackPanel>
+      <Border Background="{DynamicResource Soft}" CornerRadius="12" Padding="14,12" Margin="0,15,0,0">
+        <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+          <StackPanel><TextBlock Text="Paid credits" FontSize="10" Foreground="{DynamicResource Muted}"/><TextBlock x:Name="Paid" Text="—" FontSize="17" FontWeight="SemiBold" Foreground="{DynamicResource Ink}" Margin="0,4,0,0"/></StackPanel>
+          <StackPanel Grid.Column="1"><TextBlock Text="Other credits" FontSize="10" Foreground="{DynamicResource Muted}" ToolTip="Available minus paid, as returned by the selected organization. Some grants may have restrictions."/><TextBlock x:Name="Other" Text="—" FontSize="17" FontWeight="SemiBold" Foreground="{DynamicResource Ink}" Margin="0,4,0,0"/></StackPanel>
+        </Grid>
+      </Border>
+      <TextBlock x:Name="Status" Text="Connect your OpenAI account to get started." TextWrapping="Wrap" FontSize="11" Foreground="{DynamicResource Muted}" Margin="0,14,0,14" MaxWidth="260"/>
+      <Grid><Button x:Name="BillingButton" Content="Open billing ↗" Background="Transparent" HorizontalAlignment="Left" Padding="0,8"/><Button x:Name="RefreshButton" Content="Refresh ↻" HorizontalAlignment="Right" Padding="13,8"/></Grid>
+    </StackPanel>
+  </Border>
+</Grid>
